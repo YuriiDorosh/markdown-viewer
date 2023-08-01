@@ -64,6 +64,23 @@ static void save_html(GtkButton *button, gpointer user_data) {
     gtk_widget_destroy(GTK_WIDGET(chooser));
 }
 
+static void open_in_browser(GtkButton *button, gpointer user_data) {
+    GtkTextIter start, end;
+    GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text_view));
+    gtk_text_buffer_get_start_iter(buffer, &start);
+    gtk_text_buffer_get_end_iter(buffer, &end);
+    gchar *html = gtk_text_buffer_get_text(buffer, &start, &end, FALSE);
+
+    FILE *file = fopen("temp.html", "w");
+    if (file != NULL) {
+        fwrite(html, 1, strlen(html), file);
+        fclose(file);
+    }
+
+    g_free(html);
+    system("xdg-open temp.html"); // Linux command to open default web browser
+}
+
 int main(int argc, char *argv[]) {
     gtk_init(&argc, &argv);
     GtkWidget *window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
@@ -89,6 +106,10 @@ int main(int argc, char *argv[]) {
     GtkWidget *button_save_html = gtk_button_new_with_label("Save HTML");
     gtk_box_pack_start(GTK_BOX(box), button_save_html, FALSE, FALSE, 0);
     g_signal_connect(button_save_html, "clicked", G_CALLBACK(save_html), NULL);
+
+    button = gtk_button_new_with_label("Open in Browser");
+    gtk_box_pack_start(GTK_BOX(box), button, FALSE, FALSE, 0);
+    g_signal_connect(button, "clicked", G_CALLBACK(open_in_browser), NULL);
 
     gtk_widget_show_all(window);
     gtk_main();
