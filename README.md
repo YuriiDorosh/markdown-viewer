@@ -34,6 +34,6 @@ sudo apt-get install libwebkit2gtk-4.0-dev
 
 sudo apt-get install libcmark-dev
 
-gcc main.c -o markdown_viewer pkg-config --cflags --libs gtk+-3.0 -lcmark
+gcc main.c -o markdown_viewer `pkg-config --cflags --libs gtk+-3.0` -lcmark
 
 ./markdown_viewer
