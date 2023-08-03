@@ -1,3 +1,5 @@
+https://www.youtube.com/watch?v=oADotso-z_E&list=LL&index=18
+
 ## Installing the compiler GCC
 
 ### Ubuntu or Debian
