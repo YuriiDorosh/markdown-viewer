@@ -1,61 +1,42 @@
-https://www.youtube.com/watch?v=oADotso-z_E&list=LL&index=18
+# Introduction
 
-## Installing the compiler GCC
+[![video_deconstration](https://img.youtube.com/vi/oADotso-z_E/0.jpg)](https://www.youtube.com/watch?v=oADotso-z_E)
 
-### Ubuntu or Debian
 
-```bash
-sudo apt-get install build-essential
-```
-### Fedora
+"Markdown Viewer" is a simple GTK-based application to view Markdown files. This application allows users to:
 
-```bash
-sudo dnf install gcc
-```
+- Convert the displayed Markdown content to HTML.
+- Save the rendered HTML content to a file.
+- Preview the HTML content in a web browser.
 
-### CentOS or RHEL
+## Prerequisites
 
-```bash
-sudo yum groupinstall "Development Tools"
-```
+- `gtk3` - The GTK+ graphical UI library.
+- `cmark` - A C implementation of CommonMark.
 
-### macOS
+Inside the application:
 
-```bash
-brew install gcc
-```
+1. Click on "Open .md File" to select a Markdown file you wish to view.
+2. The Markdown content will be displayed in the main view.
+3. Click on "Save HTML" to save the rendered HTML content to a file.
+4. Click on "Open in Browser" to preview the rendered content in your default web browser.
 
-### Windows
+## Features
 
-On Windows, the easiest way to install GCC is to use MinGW. You can download and install the MinGW package from their [site](http://www6.mingw.org/?template=ARROW_3&tdfs=0&s_token=1690906948.0356440000&uuid=1690906948.0356440000&term=GCC%20Compiler&term=C%20Language%20Compiler&) and then run the command in the terminal:
-term=Test%20Code%20Online&searchbox=0&showDomain=0&backfill=0
+1. **Markdown Display**: The application reads and displays the content of Markdown files.
+2. **HTML Rendering**: Uses the `cmark` library to convert Markdown content to an HTML string.
+3. **File Interactions**: Provides options to open Markdown files and save the rendered HTML content.
+4. **Browser Preview**: Allows users to view the rendered HTML in a browser.
 
-```
-mingw-get install gcc
-```
+## Known Issues
 
-## Downloading libraries
+- The "Open in Browser" function uses `xdg-open temp.html` which works for Linux-based systems. For cross-platform compatibility, this might need adjustments.
 
-### WebKitGTK+ 4.0
-```bash
-sudo apt-get update
-sudo apt-get install libwebkit2gtk-4.0-dev
-```
+## Contribution
 
-### Libcmark
+Feel free to fork, modify, and submit pull requests. Ensure you test your code before submitting any changes.
 
-```bash
-sudo apt-get install libcmark-dev
-```
+## License
 
-## Program compilation
+This project is open-source. Ensure you reference it if used for any of your projects.
 
-```bash
-gcc main.c -o markdown_viewer `pkg-config --cflags --libs gtk+-3.0` -lcmark
-```
-
-### Running the program
-
-```
-./markdown_viewer
-```
